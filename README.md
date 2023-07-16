@@ -54,6 +54,14 @@
 
 **[Отчет о результатах тестирования](https://github.com/AlenaMysty/Portfolio/blob/main/%D0%9E%D1%82%D1%87%D0%B5%D1%82%2B%D0%BE%2B%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B8%2B%D1%82%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F%2BAPI.pdf)**
 
+## Примеры тестовых заданий
+
+[Cписок smoke тест-кейсов для главной страницы сайта Ozon.](https://docs.google.com/document/d/1Td4n7VIYVI2sklsFTUFrLt2_oYs4MfwK3CGcrBjInuM/edit)
+
+[Тестовое задание. Тестирование API на проверку ручки регитсрации](https://docs.google.com/document/d/1Oi1ODbNcbsMeCeH04oRZ-bgWey_NLtnz3ei3-vu36mI/edit)
+
+
+
 ## Контактная информация
 Email: alena-mysty@yandex.ru
 
