@@ -1,0 +1,6389 @@
+{
+	"info": {
+		"_postman_id": "59bd617c-6b37-4556-a871-6a593e0b5942",
+		"name": "Курсовая работа, 2 курс",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26675807"
+	},
+	"item": [
+		{
+			"name": "Создание личного события",
+			"item": [
+				{
+					"name": "Создание личного события с валидными данными в будущем (завтра)",
+					"item": [
+						{
+							"name": "Отображение личных событий в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Создание личного события с валидными данными в будущем (завтра)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var key = \"id\"\r",
+											"var value = pm.response.json().data.payload.id\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"var key = \"startAt\"\r",
+											"var value = pm.response.json().data.startAt\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"backgroundColor\": \"#F4F5F6\",\r\n    \"color\": \"#81888D\",\r\n    \"description\": \"\",\r\n    \"title\": \"Событие АЯ\",\r\n    \"startAt\": \"{{tomorrow}}T09:00:00+03:00\",\r\n    \"endAt\": \"{{tomorrow}}T09:30:00+03:00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/createPersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"createPersonal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Отображение личного события в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Удаление личного события",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": {{id}},\r\n    \"startAt\": \"{{startAt}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/removePersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"removePersonal"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Создание личного события с валидными данными в следующем месяце",
+					"item": [
+						{
+							"name": "Отображение личных событий в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Создание личного события с валидными данными в следующем месяце",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var key = \"id\"\r",
+											"var value = pm.response.json().data.payload.id\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"var key = \"startAt\"\r",
+											"var value = pm.response.json().data.startAt\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"backgroundColor\": \"#EBFDF2\",\r\n    \"color\": \"#43B658\",\r\n    \"description\": \"Событие\",\r\n    \"title\": \"Session AI\",\r\n    \"startAt\": \"2023-06-08T11:00:00+03:00\",\r\n    \"endAt\": \"2023-06-08T11:30:00+03:00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/createPersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"createPersonal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Отображение личного события в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-06-07T23:00:00+02:00\",\r\n    \"till\": \"2023-06-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Удаление личного события",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": {{id}},\r\n    \"startAt\": \"{{startAt}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/removePersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"removePersonal"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Создание личного события с валидными данными в следующем году",
+					"item": [
+						{
+							"name": "Отображение личных событий в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Создание личного события с валидными данными в следующем году",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var key = \"id\"\r",
+											"var value = pm.response.json().data.payload.id\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"var key = \"startAt\"\r",
+											"var value = pm.response.json().data.startAt\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"backgroundColor\": \"#FFF7C7\",\r\n    \"color\": \"#FAC641\",\r\n    \"description\": \"Session\",\r\n    \"title\": \"7Days AI\",\r\n    \"startAt\": \"2024-05-08T11:00:00+03:00\",\r\n    \"endAt\": \"2024-05-08T11:30:00+03:00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/createPersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"createPersonal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Отображение личного события в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2024-05-07T23:00:00+02:00\",\r\n    \"till\": \"2024-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Удаление личного события",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": {{id}},\r\n    \"startAt\": \"{{startAt}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/removePersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"removePersonal"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Создание личного события с валидными данными сегодня в прошлом",
+					"item": [
+						{
+							"name": "Отображение личных событий в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Создание личного события с валидными данными сегодня в прошлом",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var key = \"id\"\r",
+											"var value = pm.response.json().data.payload.id\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"var key = \"startAt\"\r",
+											"var value = pm.response.json().data.startAt\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"backgroundColor\": \"#F4F5F6\",\r\n    \"color\": \"#81888D\",\r\n    \"description\": \"Рутинное событие\",\r\n    \"title\": \"Рутинное событие АЯ\",\r\n    \"startAt\": \"{{today}}T09:00:00+03:00\",\r\n    \"endAt\": \"{{today}}T09:30:00+03:00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/createPersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"createPersonal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Отображение личного события в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Удаление личного события",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": {{id}},\r\n    \"startAt\": \"{{startAt}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/removePersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"removePersonal"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Создание личного события с валидными данными сегодня (сейчас)",
+					"item": [
+						{
+							"name": "Отображение личных событий в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Создание личного события с валидными данными сегодня (сейчас)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var key = \"id\"\r",
+											"var value = pm.response.json().data.payload.id\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"var key = \"startAt\"\r",
+											"var value = pm.response.json().data.startAt\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"backgroundColor\": \"#F4F5F6\",\r\n    \"color\": \"#81888D\",\r\n    \"description\": \"57 важных дел\",\r\n    \"title\": \"Тест-сессия №1 АЯ\",\r\n    \"startAt\": \"{{today}}T15:50:00+03:00\",\r\n    \"endAt\": \"{{today}}T16:10:00+03:00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/createPersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"createPersonal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Отображение личного события в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Удаление личного события",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": {{id}},\r\n    \"startAt\": \"{{startAt}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/removePersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"removePersonal"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Создание личного события с валидными данными сегодня в будущем",
+					"item": [
+						{
+							"name": "Отображение личных событий в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Создание личного события с валидными данными сегодня в будущем",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var key = \"id\"\r",
+											"var value = pm.response.json().data.payload.id\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"var key = \"startAt\"\r",
+											"var value = pm.response.json().data.startAt\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"backgroundColor\": \"#FFF7C7\",\r\n    \"color\": \"#FAC641\",\r\n    \"description\": \" ОЧЕНЬ ВАЖНОЕ СОБЫТИЕ\",\r\n    \"title\": \"ВАЖНО АЯ\",\r\n    \"startAt\": \"{{today}}T19:00:00+03:00\",\r\n    \"endAt\": \"{{today}}T21:30:00+03:00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/createPersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"createPersonal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Отображение личного события в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Удаление личного события",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": {{id}},\r\n    \"startAt\": \"{{startAt}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/removePersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"removePersonal"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Создание личного события с валидными данными в прошлом году",
+					"item": [
+						{
+							"name": "Отображение личных событий в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Создание личного события с валидными данными сегодня в прошлом",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var key = \"id\"\r",
+											"var value = pm.response.json().data.payload.id\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"var key = \"startAt\"\r",
+											"var value = pm.response.json().data.startAt\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"backgroundColor\": \"#F4F5F6\",\r\n    \"color\": \"#81888D\",\r\n    \"description\": \"рутинное событие\",\r\n    \"title\": \"ерундаАЯ\",\r\n    \"startAt\": \"2022-05-08T16:40:00+03:00\",\r\n    \"endAt\": \"2022-05-08T17:00:00+03:00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/createPersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"createPersonal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Отображение личного события в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2022-05-07T23:00:00+02:00\",\r\n    \"till\": \"2022-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Удаление личного события",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": {{id}},\r\n    \"startAt\": \"{{startAt}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/removePersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"removePersonal"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Создание личного события с валидными данными в прошлом месяце",
+					"item": [
+						{
+							"name": "Отображение личных событий в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Создание личного события с валидными данными в прошлом месяце",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var key = \"id\"\r",
+											"var value = pm.response.json().data.payload.id\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"var key = \"startAt\"\r",
+											"var value = pm.response.json().data.startAt\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"backgroundColor\": \"#FFF7C7\",\r\n    \"color\": \"#FAC641\",\r\n    \"description\": \"Я\",\r\n    \"title\": \"Я\",\r\n    \"startAt\": \"2023-04-08T16:40:00+03:00\",\r\n    \"endAt\": \"2023-04-08T17:00:00+03:00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/createPersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"createPersonal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Отображение личного события в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-04-07T23:00:00+02:00\",\r\n    \"till\": \"2023-04-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Удаление личного события",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": {{id}},\r\n    \"startAt\": \"{{startAt}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/removePersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"removePersonal"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Создание личного события с валидными данными вчера",
+					"item": [
+						{
+							"name": "Отображение личных событий в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Создание личного события с валидными данными вчера",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var key = \"id\"\r",
+											"var value = pm.response.json().data.payload.id\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"var key = \"startAt\"\r",
+											"var value = pm.response.json().data.startAt\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"backgroundColor\": \"#FFF7C7\",\r\n    \"color\": \"#FAC641\",\r\n    \"description\": \"Очень длинное мероприятие\",\r\n    \"title\": \"Очень длинное мероприятие\",\r\n    \"startAt\": \"{{yesterday}}T16:40:00+03:00\",\r\n    \"endAt\": \"{{yesterday}}T17:00:00+03:00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/createPersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"createPersonal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Отображение личного события в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-04-07T23:00:00+02:00\",\r\n    \"till\": \"2023-04-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Удаление личного события",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": {{id}},\r\n    \"startAt\": \"{{startAt}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/removePersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"removePersonal"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Создание личного события с невалидным именем",
+					"item": [
+						{
+							"name": "Отображение личных событий в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Создание личного события с невалидным именем",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Body matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Value must not exceed 40 character(s)\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"backgroundColor\": \"#F4F5F6\",\r\n    \"color\": \"#81888D\",\r\n    \"description\": \"В списке тортов для поваров не показано более 10 тортов\",\r\n    \"title\": \"В списке тортов для поваров не показано более 10 тортов\",\r\n    \"startAt\": \"{{tomorrow}}T16:50:00+03:00\",\r\n    \"endAt\": \"{{tomorrow}}T17:30:00+03:00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/createPersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"createPersonal"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Создание личного события с пустым именем",
+					"item": [
+						{
+							"name": "Отображение личных событий в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Создание личного события с пустым именем",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Body matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Value must be at least 1 character(s) long\");\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"backgroundColor\": \"#F4F5F6\",\r\n    \"color\": \"#81888D\",\r\n    \"description\": \"\",\r\n    \"title\": \"\",\r\n    \"startAt\": \"{{tomorrow}}T09:00:00+03:00\",\r\n    \"endAt\": \"{{tomorrow}}T09:30:00+03:00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/createPersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"createPersonal"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Создание личного события, время которого совпадает со временем другого личного события",
+					"item": [
+						{
+							"name": "Отображение личных событий в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Создание личного события с валидными данными",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var key = \"id\"\r",
+											"var value = pm.response.json().data.payload.id\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"var key = \"startAt\"\r",
+											"var value = pm.response.json().data.startAt\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"backgroundColor\": \"#F4F5F6\",\r\n    \"color\": \"#81888D\",\r\n    \"description\": \"\",\r\n    \"title\": \"Событие АЯ\",\r\n    \"startAt\": \"{{tomorrow}}T09:00:00+03:00\",\r\n    \"endAt\": \"{{tomorrow}}T09:30:00+03:00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/createPersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"createPersonal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Создание дублирующего личного события",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var key = \"id2\"\r",
+											"var value = pm.response.json().data.payload.id\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"var key = \"startAt\"\r",
+											"var value = pm.response.json().data.startAt\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"backgroundColor\": \"#F4F5F6\",\r\n    \"color\": \"#81888D\",\r\n    \"description\": \"\",\r\n    \"title\": \"Событие 2 АЯ\",\r\n    \"startAt\": \"{{tomorrow}}T09:00:00+03:00\",\r\n    \"endAt\": \"{{tomorrow}}T09:30:00+03:00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/createPersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"createPersonal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Отображение личных события в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Удаление личного события",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": {{id}},\r\n    \"startAt\": \"{{startAt}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/removePersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"removePersonal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Удаление дублирующего личного события",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": {{id2}},\r\n    \"startAt\": \"{{startAt}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/removePersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"removePersonal"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Создание личного события с неустановленной датой",
+					"item": [
+						{
+							"name": "Отображение личных событий в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Создание личного события с неустановленной датой",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Body matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Fail to check against [dateByPeriod] validation filter\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"backgroundColor\": \"#F4F5F6\",\r\n    \"color\": \"#81888D\",\r\n    \"description\": \"\",\r\n    \"title\": \"Событие АЯ\",\r\n    \"startAt\": \"\",\r\n    \"endAt\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/createPersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"createPersonal"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Создание личного события с некорректной датой",
+					"item": [
+						{
+							"name": "Отображение личных событий в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Создание личного события с некорректной датой",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Body matches string\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Fail to check against [correctDateTimeInAtomFormat] validation filte\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"backgroundColor\": \"#F4F5F6\",\r\n    \"color\": \"#81888D\",\r\n    \"description\": \"\",\r\n    \"title\": \"Событие АЯ\",\r\n    \"startAt\": \"2023-02-30T11:00:00+03:00\",\r\n    \"endAt\": \"2023-02-30T12:00:00+03:00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/createPersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"createPersonal"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Создание личного события минимальной продолжительности",
+					"item": [
+						{
+							"name": "Отображение личных событий в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Создание личного события минимальной продолжительности",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var key = \"id\"\r",
+											"var value = pm.response.json().data.payload.id\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"var key = \"startAt\"\r",
+											"var value = pm.response.json().data.startAt\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"backgroundColor\": \"#F4F5F6\",\r\n    \"color\": \"#81888D\",\r\n    \"description\": \"\",\r\n    \"title\": \"Событие АЯ\",\r\n    \"startAt\": \"{{tomorrow}}T11:00:00+03:00\",\r\n    \"endAt\": \"{{tomorrow}}T11:01:00+03:00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/createPersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"createPersonal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Отображение личного события в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Удаление личного события",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": {{id}},\r\n    \"startAt\": \"{{startAt}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/removePersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"removePersonal"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Создание личного события длительной продолжительности",
+					"item": [
+						{
+							"name": "Отображение личных событий в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Создание личного события длительной продолжительности",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var key = \"id\"\r",
+											"var value = pm.response.json().data.payload.id\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"var key = \"startAt\"\r",
+											"var value = pm.response.json().data.startAt\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"backgroundColor\": \"#F4F5F6\",\r\n    \"color\": \"#81888D\",\r\n    \"description\": \"\",\r\n    \"title\": \"Событие АЯ\",\r\n    \"startAt\": \"{{tomorrow}}T11:00:00+03:00\",\r\n    \"endAt\": \"2023-05-18T11:00:00+03:00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/createPersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"createPersonal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Отображение личного события в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Удаление личного события",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": {{id}},\r\n    \"startAt\": \"{{startAt}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/removePersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"removePersonal"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Редактирование личного события",
+			"item": [
+				{
+					"name": "Пересохранить личное событие",
+					"item": [
+						{
+							"name": "Отображение личных событий в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Создание личного события с валидными данными в будущем (завтра)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var key = \"id\"\r",
+											"var value = pm.response.json().data.payload.id\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"var key = \"startAt\"\r",
+											"var value = pm.response.json().data.startAt\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"backgroundColor\": \"#F4F5F6\",\r\n    \"color\": \"#81888D\",\r\n    \"description\": \"\",\r\n    \"title\": \"Событие АЯ\",\r\n    \"startAt\": \"{{tomorrow}}T09:00:00+03:00\",\r\n    \"endAt\": \"{{tomorrow}}T09:30:00+03:00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/createPersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"createPersonal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Отображение личного события в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Пересохранение личного события",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var key = \"id\"\r",
+											"var value = pm.response.json().data.payload.id\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"var key = \"startAt\"\r",
+											"var value = pm.response.json().data.startAt\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"backgroundColor\": \"#F4F5F6\",\r\n    \"color\": \"#81888D\",\r\n    \"description\": \"\",\r\n    \"title\": \"Событие АЯ\",\r\n    \"startAt\": \"{{tomorrow}}T09:00:00+03:00\",\r\n    \"endAt\": \"{{tomorrow}}T09:30:00+03:00\",\r\n    \"oldStartAt\":\"{{startAt}}\",\r\n    \"id\": {{id}}\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/updatePersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"updatePersonal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Отображение личного события в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Удаление личного события",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": {{id}},\r\n    \"startAt\": \"{{startAt}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/removePersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"removePersonal"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Редактирование названия личного события",
+					"item": [
+						{
+							"name": "Отображение личных событий в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Создание личного события в будущем (завтра)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var key = \"id\"\r",
+											"var value = pm.response.json().data.payload.id\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"var key = \"startAt\"\r",
+											"var value = pm.response.json().data.startAt\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"backgroundColor\": \"#F4F5F6\",\r\n    \"color\": \"#81888D\",\r\n    \"description\": \"\",\r\n    \"title\": \"Событие АЯ\",\r\n    \"startAt\": \"{{tomorrow}}T09:00:00+03:00\",\r\n    \"endAt\": \"{{tomorrow}}T09:30:00+03:00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/createPersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"createPersonal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Отображение личного события в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Редактирование названия личного события",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var key = \"id\"\r",
+											"var value = pm.response.json().data.payload.id\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"var key = \"startAt\"\r",
+											"var value = pm.response.json().data.startAt\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"backgroundColor\": \"#F4F5F6\",\r\n    \"color\": \"#81888D\",\r\n    \"description\": \"\",\r\n    \"title\": \"Новое событие\",\r\n    \"startAt\": \"{{tomorrow}}T09:00:00+03:00\",\r\n    \"endAt\": \"{{tomorrow}}T09:30:00+03:00\",\r\n    \"oldStartAt\":\"{{startAt}}\",\r\n    \"id\": {{id}}\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/updatePersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"updatePersonal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Отображение личного события в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Удаление личного события",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": {{id}},\r\n    \"startAt\": \"{{startAt}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/removePersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"removePersonal"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Редактирование описания личного события",
+					"item": [
+						{
+							"name": "Отображение личных событий в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Создание личного события в будущем (завтра)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var key = \"id\"\r",
+											"var value = pm.response.json().data.payload.id\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"var key = \"startAt\"\r",
+											"var value = pm.response.json().data.startAt\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"backgroundColor\": \"#F4F5F6\",\r\n    \"color\": \"#81888D\",\r\n    \"description\": \"Важное событие\",\r\n    \"title\": \"Событие АЯ\",\r\n    \"startAt\": \"{{tomorrow}}T09:00:00+03:00\",\r\n    \"endAt\": \"{{tomorrow}}T09:30:00+03:00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/createPersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"createPersonal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Отображение личного события в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Редактирование описания личного события",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var key = \"id\"\r",
+											"var value = pm.response.json().data.payload.id\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"var key = \"startAt\"\r",
+											"var value = pm.response.json().data.startAt\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"backgroundColor\": \"#F4F5F6\",\r\n    \"color\": \"#81888D\",\r\n    \"description\": \"Обновленное событие\",\r\n    \"title\": \"Событие АЯ\",\r\n    \"startAt\": \"{{tomorrow}}T09:00:00+03:00\",\r\n    \"endAt\": \"{{tomorrow}}T09:30:00+03:00\",\r\n    \"oldStartAt\":\"{{startAt}}\",\r\n    \"id\": {{id}}\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/updatePersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"updatePersonal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Отображение личного события в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Удаление личного события",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": {{id}},\r\n    \"startAt\": \"{{startAt}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/removePersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"removePersonal"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Редактирование цвета личного события",
+					"item": [
+						{
+							"name": "Отображение личных событий в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Создание личного события в будущем (завтра)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var key = \"id\"\r",
+											"var value = pm.response.json().data.payload.id\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"var key = \"startAt\"\r",
+											"var value = pm.response.json().data.startAt\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"backgroundColor\": \"#F4F5F6\",\r\n    \"color\": \"#81888D\",\r\n    \"description\": \"\",\r\n    \"title\": \"Событие АЯ\",\r\n    \"startAt\": \"{{tomorrow}}T09:00:00+03:00\",\r\n    \"endAt\": \"{{tomorrow}}T09:30:00+03:00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/createPersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"createPersonal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Отображение личного события в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Редактирование цвета личного события",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var key = \"id\"\r",
+											"var value = pm.response.json().data.payload.id\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"var key = \"startAt\"\r",
+											"var value = pm.response.json().data.startAt\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"backgroundColor\": \"#EBFDF2\",\r\n    \"color\": \"#43B658\",\r\n    \"description\": \"\",\r\n    \"title\": \"Событие АЯ\",\r\n    \"startAt\": \"{{tomorrow}}T09:00:00+03:00\",\r\n    \"endAt\": \"{{tomorrow}}T09:30:00+03:00\",\r\n    \"oldStartAt\":\"{{startAt}}\",\r\n    \"id\": {{id}}\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/updatePersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"updatePersonal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Отображение личного события в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Удаление личного события",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": {{id}},\r\n    \"startAt\": \"{{startAt}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/removePersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"removePersonal"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Перенос события из будущего в прошлое",
+					"item": [
+						{
+							"name": "Отображение личных событий в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Создание личного события с валидными данными в будущем (завтра)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var key = \"id\"\r",
+											"var value = pm.response.json().data.payload.id\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"var key = \"startAt\"\r",
+											"var value = pm.response.json().data.startAt\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"backgroundColor\": \"#F4F5F6\",\r\n    \"color\": \"#81888D\",\r\n    \"description\": \"\",\r\n    \"title\": \"Событие АЯ\",\r\n    \"startAt\": \"{{tomorrow}}T09:00:00+03:00\",\r\n    \"endAt\": \"{{tomorrow}}T09:30:00+03:00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/createPersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"createPersonal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Отображение личного события в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Перенос события из будущего в прошлое",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var key = \"id2\"\r",
+											"var value = pm.response.json().data.payload.id\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"var key = \"startAt2\"\r",
+											"var value = pm.response.json().data.startAt\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"backgroundColor\": \"#F4F5F6\",\r\n    \"color\": \"#81888D\",\r\n    \"description\": \"\",\r\n    \"title\": \"Событие АЯ\",\r\n    \"startAt\": \"{{yesterday}}T10:00:00+03:00\",\r\n    \"endAt\": \"{{yesterday}}T10:30:00+03:00\",\r\n    \"oldStartAt\":\"{{startAt}}\",\r\n    \"id\": {{id}}\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/updatePersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"updatePersonal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Отображение личного события в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Удаление личного события",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": {{id2}},\r\n    \"startAt\": \"{{startAt2}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/removePersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"removePersonal"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Перенос события из прошлого в будущее",
+					"item": [
+						{
+							"name": "Отображение личных событий в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Создание личного события с валидными данными в прошлом",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var key = \"id\"\r",
+											"var value = pm.response.json().data.payload.id\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"var key = \"startAt\"\r",
+											"var value = pm.response.json().data.startAt\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"backgroundColor\": \"#F4F5F6\",\r\n    \"color\": \"#81888D\",\r\n    \"description\": \"\",\r\n    \"title\": \"Событие АЯ\",\r\n    \"startAt\": \"{{yesterday}}T09:00:00+03:00\",\r\n    \"endAt\": \"{{yesterday}}T09:30:00+03:00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/createPersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"createPersonal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Отображение личного события в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Перенос события из прошлого в будущее",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var key = \"id2\"\r",
+											"var value = pm.response.json().data.payload.id\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"var key = \"startAt2\"\r",
+											"var value = pm.response.json().data.startAt\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"backgroundColor\": \"#F4F5F6\",\r\n    \"color\": \"#81888D\",\r\n    \"description\": \"\",\r\n    \"title\": \"Событие АЯ\",\r\n    \"startAt\": \"{{tomorrow}}T10:00:00+03:00\",\r\n    \"endAt\": \"{{tomorrow}}T10:30:00+03:00\",\r\n    \"oldStartAt\":\"{{startAt}}\",\r\n    \"id\": {{id}}\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/updatePersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"updatePersonal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Отображение личного события в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Удаление личного события",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": {{id2}},\r\n    \"startAt\": \"{{startAt2}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/removePersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"removePersonal"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Перенос события из настоящего в прошлое",
+					"item": [
+						{
+							"name": "Отображение личных событий в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Создание личного события с валидными данными",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var key = \"id\"\r",
+											"var value = pm.response.json().data.payload.id\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"var key = \"startAt\"\r",
+											"var value = pm.response.json().data.startAt\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"backgroundColor\": \"#F4F5F6\",\r\n    \"color\": \"#81888D\",\r\n    \"description\": \"\",\r\n    \"title\": \"Событие АЯ\",\r\n    \"startAt\": \"{{today}}T20:00:00+03:00\",\r\n    \"endAt\": \"{{today}}T20:30:00+03:00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/createPersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"createPersonal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Отображение личного события в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Перенос события из настоящего в прошлое",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var key = \"id2\"\r",
+											"var value = pm.response.json().data.payload.id\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"var key = \"startAt2\"\r",
+											"var value = pm.response.json().data.startAt\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"backgroundColor\": \"#F4F5F6\",\r\n    \"color\": \"#81888D\",\r\n    \"description\": \"\",\r\n    \"title\": \"Событие АЯ\",\r\n    \"startAt\": \"{{yesterday}}T10:00:00+03:00\",\r\n    \"endAt\": \"{{yesterday}}T10:30:00+03:00\",\r\n    \"oldStartAt\":\"{{startAt}}\",\r\n    \"id\": {{id}}\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/updatePersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"updatePersonal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Отображение личного события в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Удаление личного события",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": {{id2}},\r\n    \"startAt\": \"{{startAt2}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/removePersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"removePersonal"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Перенос события из настоящего в будущее",
+					"item": [
+						{
+							"name": "Отображение личных событий в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Создание личного события с валидными данными",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var key = \"id\"\r",
+											"var value = pm.response.json().data.payload.id\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"var key = \"startAt\"\r",
+											"var value = pm.response.json().data.startAt\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"backgroundColor\": \"#F4F5F6\",\r\n    \"color\": \"#81888D\",\r\n    \"description\": \"\",\r\n    \"title\": \"Событие АЯ\",\r\n    \"startAt\": \"{{today}}T20:00:00+03:00\",\r\n    \"endAt\": \"{{today}}T20:30:00+03:00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/createPersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"createPersonal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Отображение личного события в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Перенос события из настоящего в будущее",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var key = \"id2\"\r",
+											"var value = pm.response.json().data.payload.id\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"var key = \"startAt2\"\r",
+											"var value = pm.response.json().data.startAt\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"backgroundColor\": \"#F4F5F6\",\r\n    \"color\": \"#81888D\",\r\n    \"description\": \"\",\r\n    \"title\": \"Событие АЯ\",\r\n    \"startAt\": \"2023-06-08T20:00:00+03:00\",\r\n    \"endAt\": \"2023-06-08T20:30:00+03:00\",\r\n    \"oldStartAt\":\"{{startAt}}\",\r\n    \"id\": {{id}}\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/updatePersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"updatePersonal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Отображение личного события в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Удаление личного события",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": {{id2}},\r\n    \"startAt\": \"{{startAt2}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/removePersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"removePersonal"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Редактирование всех полей личного события",
+					"item": [
+						{
+							"name": "Отображение личных событий в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Создание личного события с валидными данными",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var key = \"id\"\r",
+											"var value = pm.response.json().data.payload.id\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"var key = \"startAt\"\r",
+											"var value = pm.response.json().data.startAt\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"backgroundColor\": \"#F4F5F6\",\r\n    \"color\": \"#81888D\",\r\n    \"description\": \"Просто событие\",\r\n    \"title\": \"Событие АЯ\",\r\n    \"startAt\": \"{{tomorrow}}T09:00:00+03:00\",\r\n    \"endAt\": \"{{tomorrow}}T09:30:00+03:00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/createPersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"createPersonal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Отображение личного события в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Редактирование всех полей личного события",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var key = \"id2\"\r",
+											"var value = pm.response.json().data.payload.id\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"var key = \"startAt2\"\r",
+											"var value = pm.response.json().data.startAt\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"backgroundColor\": \"#EBFDF2\",\r\n    \"color\": \"#43B658\",\r\n    \"description\": \"Обновленное событие\",\r\n    \"title\": \"Новое событие АЯ\",\r\n    \"startAt\": \"{{tomorrow}}T19:00:00+03:00\",\r\n    \"endAt\": \"{{tomorrow}}T20:30:00+03:00\",\r\n    \"oldStartAt\":\"{{startAt}}\",\r\n    \"id\": {{id}}\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/updatePersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"updatePersonal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Отображение личного события в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Удаление личного события",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": {{id2}},\r\n    \"startAt\": \"{{startAt2}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/removePersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"removePersonal"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Удаление личного события",
+			"item": [
+				{
+					"name": "Удаление личного события из будущего",
+					"item": [
+						{
+							"name": "Отображение личных событий в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Создание личного события в следующем месяце",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var key = \"id\"\r",
+											"var value = pm.response.json().data.payload.id\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"var key = \"startAt\"\r",
+											"var value = pm.response.json().data.startAt\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"backgroundColor\": \"#EBFDF2\",\r\n    \"color\": \"#43B658\",\r\n    \"description\": \"Событие\",\r\n    \"title\": \"Session AI\",\r\n    \"startAt\": \"2023-06-08T11:00:00+03:00\",\r\n    \"endAt\": \"2023-06-08T11:30:00+03:00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/createPersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"createPersonal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Отображение личного события в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-06-07T23:00:00+02:00\",\r\n    \"till\": \"2023-06-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Удаление личного события",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": {{id}},\r\n    \"startAt\": \"{{startAt}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/removePersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"removePersonal"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Удаление личного события из настоящего",
+					"item": [
+						{
+							"name": "Отображение личных событий в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Создание личного события в настоящем",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var key = \"id\"\r",
+											"var value = pm.response.json().data.payload.id\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"var key = \"startAt\"\r",
+											"var value = pm.response.json().data.startAt\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"backgroundColor\": \"#F4F5F6\",\r\n    \"color\": \"#81888D\",\r\n    \"description\": \"57 важных дел\",\r\n    \"title\": \"Тест-сессия №1 АЯ\",\r\n    \"startAt\": \"{{today}}T15:50:00+03:00\",\r\n    \"endAt\": \"{{today}}T16:10:00+03:00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/createPersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"createPersonal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Отображение личного события в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Удаление личного события",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": {{id}},\r\n    \"startAt\": \"{{startAt}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/removePersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"removePersonal"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Удаление личного события из прошлого",
+					"item": [
+						{
+							"name": "Отображение личных событий в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Создание личного в прошлом месяце",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var key = \"id\"\r",
+											"var value = pm.response.json().data.payload.id\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"var key = \"startAt\"\r",
+											"var value = pm.response.json().data.startAt\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"backgroundColor\": \"#FFF7C7\",\r\n    \"color\": \"#FAC641\",\r\n    \"description\": \"Я\",\r\n    \"title\": \"Я\",\r\n    \"startAt\": \"2023-04-08T16:40:00+03:00\",\r\n    \"endAt\": \"2023-04-08T17:00:00+03:00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/createPersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"createPersonal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Отображение личного события в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-04-07T23:00:00+02:00\",\r\n    \"till\": \"2023-04-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Удаление личного события",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": {{id}},\r\n    \"startAt\": \"{{startAt}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/removePersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"removePersonal"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Удаление удаленного события",
+					"item": [
+						{
+							"name": "Отображение личных событий в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Создание личного события в настоящем",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var key = \"id\"\r",
+											"var value = pm.response.json().data.payload.id\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"var key = \"startAt\"\r",
+											"var value = pm.response.json().data.startAt\r",
+											"\r",
+											"pm.collectionVariables.set(key, value);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"backgroundColor\": \"#F4F5F6\",\r\n    \"color\": \"#81888D\",\r\n    \"description\": \"57 важных дел\",\r\n    \"title\": \"Тест-сессия №1 АЯ\",\r\n    \"startAt\": \"{{today}}T15:50:00+03:00\",\r\n    \"endAt\": \"{{today}}T16:10:00+03:00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/createPersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"createPersonal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Отображение личного события в расписании",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"2023-05-07T23:00:00+02:00\",\r\n    \"till\": \"2023-05-14T23:00:00+02:00\",\r\n    \"onlyTypes\": [\"slot\", \"event\"],\r\n    \"statuses\": [\"without_status\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/events",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Удаление личного события",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": {{id}},\r\n    \"startAt\": \"{{startAt}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/removePersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"removePersonal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Удаление удаленного события",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "token_global={{myToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": {{id}},\r\n    \"startAt\": \"{{startAt}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/removePersonal",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"removePersonal"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "https://api-teachers.skyeng.ru/v2/schedule"
+		},
+		{
+			"key": "myToken",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "id",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "startAt",
+			"value": ""
+		},
+		{
+			"key": "today",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "tomorrow",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "yesterday",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "id2",
+			"value": ""
+		},
+		{
+			"key": "startAt2",
+			"value": ""
+		}
+	]
+}
