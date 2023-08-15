@@ -63,5 +63,5 @@
 
 
 ## Контактная информация
-Email: alena-mysty@yandex.ru
+Email: yackiv.a.v@mail.ru
 
